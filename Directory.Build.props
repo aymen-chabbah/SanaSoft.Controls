@@ -5,7 +5,19 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Sanasoft</Authors>
+    <Company>Sanasoft</Company>
+    <RepositoryUrl>https://github.com/aymen-chabbah/Sanasoft.Shared</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/aymen-chabbah/Sanasoft.Shared</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsPackable)' != 'false'">
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
 
 </Project>

@@ -17,24 +17,36 @@ dotnet build
 dotnet test
 ```
 
-## Using it in an application
+## Using the packages in an application
 
-Add this repository as a git submodule of your application:
+The packages `Sanasoft.Shared` and `Sanasoft.Shared.Wpf` are published to GitHub Packages.
+GitHub Packages always requires sign-in to restore, even for a public repository.
+
+1. Create a GitHub personal access token (classic) with the `read:packages` scope.
+2. Add the feed once per machine:
+
+   ```bash
+   dotnet nuget add source https://nuget.pkg.github.com/aymen-chabbah/index.json --name sanasoft --username <your-github-username> --password <your-token>
+   ```
+
+3. Reference the package from your application:
+
+   ```bash
+   dotnet add package Sanasoft.Shared.Wpf
+   ```
+
+`Sanasoft.Shared.Wpf` brings in `Sanasoft.Shared` automatically.
+
+## Releasing a new version
+
+Versions follow [Semantic Versioning](https://semver.org). Merge to `main`, then tag the commit:
 
 ```bash
-git submodule add https://github.com/aymen-chabbah/Sanasoft.Shared.git external/Sanasoft.Shared
+git tag v1.2.0
+git push origin v1.2.0
 ```
 
-Then reference the projects you need from your `.csproj`:
-
-```xml
-<ItemGroup>
-  <ProjectReference Include="..\external\Sanasoft.Shared\src\Sanasoft.Shared.Wpf\Sanasoft.Shared.Wpf.csproj" />
-</ItemGroup>
-```
-
-Teammates cloning the application run `git submodule update --init` once.
-To pick up newer shared code, run `git submodule update --remote` and commit the updated submodule.
+CI builds, runs the tests, and publishes both packages with version `1.2.0`.
 
 ## Contributing
 
