@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Sanasoft.Shared.Wpf\Sanasoft.Shared.Wpf.csproj" />
+    <ProjectReference Include="..\..\src\SanaSoft.Controls\SanaSoft.Controls.csproj" />
   </ItemGroup>
 
 </Project>

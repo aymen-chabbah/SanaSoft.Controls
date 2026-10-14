@@ -1,7 +1,7 @@
 using System.ComponentModel;
-using Sanasoft.Shared.Mvvm;
+using SanaSoft.Controls.Core.Mvvm;
 
-namespace Sanasoft.Shared.Tests.Mvvm;
+namespace SanaSoft.Controls.Core.Tests.Mvvm;
 
 public class ObservableObjectTests
 {

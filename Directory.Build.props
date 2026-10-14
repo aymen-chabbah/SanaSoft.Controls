@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>Sanasoft</Authors>
-    <Company>Sanasoft</Company>
-    <RepositoryUrl>https://github.com/aymen-chabbah/Sanasoft.Shared</RepositoryUrl>
+    <Authors>SanaSoft</Authors>
+    <Company>SanaSoft</Company>
+    <RepositoryUrl>https://github.com/aymen-chabbah/SanaSoft.Controls</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://github.com/aymen-chabbah/Sanasoft.Shared</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/aymen-chabbah/SanaSoft.Controls</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 

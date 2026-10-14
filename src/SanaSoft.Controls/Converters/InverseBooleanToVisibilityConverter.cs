@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Sanasoft.Shared.Wpf.Converters;
+namespace SanaSoft.Controls.Converters;
 
 [ValueConversion(typeof(bool), typeof(Visibility))]
 public sealed class InverseBooleanToVisibilityConverter : IValueConverter

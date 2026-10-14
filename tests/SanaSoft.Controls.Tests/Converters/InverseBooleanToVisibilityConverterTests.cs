@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Windows;
-using Sanasoft.Shared.Wpf.Converters;
+using SanaSoft.Controls.Converters;
 
-namespace Sanasoft.Shared.Wpf.Tests.Converters;
+namespace SanaSoft.Controls.Tests.Converters;
 
 public class InverseBooleanToVisibilityConverterTests
 {

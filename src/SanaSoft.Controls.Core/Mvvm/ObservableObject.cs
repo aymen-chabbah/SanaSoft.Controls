@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Sanasoft.Shared.Mvvm;
+namespace SanaSoft.Controls.Core.Mvvm;
 
 public abstract class ObservableObject : INotifyPropertyChanged
 {

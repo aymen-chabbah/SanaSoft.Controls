@@ -2,7 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <Description>Shared, UI-independent code for Sanasoft applications.</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\SanaSoft.Controls.Core\SanaSoft.Controls.Core.csproj" />
+  </ItemGroup>
 
 </Project>
