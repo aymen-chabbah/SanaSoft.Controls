@@ -13,6 +13,8 @@
         <ResourceDictionary Source="/SanaSoft.Controls;component/Themes/Tokens/Typography.xaml" />
         <ResourceDictionary Source="/SanaSoft.Controls;component/Themes/Tokens/Spacing.xaml" />
         <ResourceDictionary Source="/SanaSoft.Controls;component/Themes/Tokens/Light.xaml" />
+
+        <ResourceDictionary Source="/SanaSoft.Controls;component/Controls/NumericBox/NumericBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

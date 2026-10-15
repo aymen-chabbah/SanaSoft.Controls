@@ -1,0 +1,157 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SanaSoft.Controls"
+                    xmlns:themes="clr-namespace:SanaSoft.Controls.Themes">
+
+    <!--
+        Storyboards cannot use DynamicResource, so state changes animate the Opacity of overlay
+        borders whose brushes are tokens. Colors stay theme-aware; animations stay frozen-safe.
+    -->
+
+    <Style x:Key="SanaSoft.NumericBox.SpinButton" TargetType="RepeatButton">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Delay" Value="400" />
+        <Setter Property="Interval" Value="60" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static themes:ResourceKeys.SecondaryForegroundBrush}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border x:Name="Background" Background="Transparent">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Background" Property="Background" Value="{DynamicResource {x:Static themes:ResourceKeys.SurfaceHoverBrush}}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Background" Property="Background" Value="{DynamicResource {x:Static themes:ResourceKeys.SurfacePressedBrush}}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static themes:ResourceKeys.DisabledForegroundBrush}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:NumericBox">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="MinHeight" Value="{DynamicResource {x:Static themes:ResourceKeys.ControlMinHeight}}" />
+        <Setter Property="Padding" Value="{DynamicResource {x:Static themes:ResourceKeys.ControlPadding}}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource {x:Static themes:ResourceKeys.ControlBorderThickness}}" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static themes:ResourceKeys.SurfaceBrush}}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes:ResourceKeys.BorderBrush}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static themes:ResourceKeys.ForegroundBrush}}" />
+        <Setter Property="FontFamily" Value="{DynamicResource {x:Static themes:ResourceKeys.FontFamily}}" />
+        <Setter Property="FontSize" Value="{DynamicResource {x:Static themes:ResourceKeys.FontSizeBody}}" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:NumericBox">
+                    <Grid x:Name="Root">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <!-- Partial opacity: the value stays readable, just washed out. -->
+                                        <DoubleAnimation Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="Opacity" To="0.6" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="FocusBorder" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{DynamicResource {x:Static themes:ResourceKeys.ControlCornerRadius}}" />
+                        <Border x:Name="HoverBorder"
+                                Opacity="0"
+                                BorderBrush="{DynamicResource {x:Static themes:ResourceKeys.BorderHoverBrush}}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{DynamicResource {x:Static themes:ResourceKeys.ControlCornerRadius}}" />
+                        <Border x:Name="FocusBorder"
+                                Opacity="0"
+                                BorderBrush="{DynamicResource {x:Static themes:ResourceKeys.AccentBrush}}"
+                                BorderThickness="2"
+                                CornerRadius="{DynamicResource {x:Static themes:ResourceKeys.ControlCornerRadius}}" />
+
+                        <Grid Margin="{TemplateBinding BorderThickness}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- AutomationIds are a stable contract for UI tests; keep them when retemplating. -->
+                            <TextBox x:Name="PART_TextBox"
+                                     AutomationProperties.AutomationId="TextBox"
+                                     Margin="{TemplateBinding Padding}"
+                                     Padding="0"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Foreground="{TemplateBinding Foreground}"
+                                     CaretBrush="{TemplateBinding Foreground}"
+                                     SelectionBrush="{DynamicResource {x:Static themes:ResourceKeys.AccentBrush}}"
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     IsReadOnly="{TemplateBinding IsReadOnly}"
+                                     InputScope="Number">
+                                <TextBox.Template>
+                                    <!-- Strip the default TextBox chrome; NumericBox draws its own border. -->
+                                    <ControlTemplate TargetType="TextBox">
+                                        <ScrollViewer x:Name="PART_ContentHost" Focusable="False" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </ControlTemplate>
+                                </TextBox.Template>
+                            </TextBox>
+
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <RepeatButton Style="{StaticResource SanaSoft.NumericBox.SpinButton}"
+                                              Command="{x:Static local:NumericBox.IncreaseCommand}"
+                                              AutomationProperties.AutomationId="IncreaseButton"
+                                              AutomationProperties.Name="Increase">
+                                    <Path Data="M 0,4 L 4,0 L 8,4" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RepeatButton}}" StrokeThickness="1.5" />
+                                </RepeatButton>
+                                <RepeatButton Grid.Row="1"
+                                              Style="{StaticResource SanaSoft.NumericBox.SpinButton}"
+                                              Command="{x:Static local:NumericBox.DecreaseCommand}"
+                                              AutomationProperties.AutomationId="DecreaseButton"
+                                              AutomationProperties.Name="Decrease">
+                                    <Path Data="M 0,0 L 4,4 L 8,0" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RepeatButton}}" StrokeThickness="1.5" />
+                                </RepeatButton>
+                            </Grid>
+                        </Grid>
+
+                        <Border x:Name="DisabledOverlay"
+                                Opacity="0"
+                                IsHitTestVisible="False"
+                                Background="{DynamicResource {x:Static themes:ResourceKeys.DisabledSurfaceBrush}}"
+                                CornerRadius="{DynamicResource {x:Static themes:ResourceKeys.ControlCornerRadius}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
