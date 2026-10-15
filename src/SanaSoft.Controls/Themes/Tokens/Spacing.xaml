@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:themes="clr-namespace:SanaSoft.Controls.Themes">
+
+    <CornerRadius x:Key="{x:Static themes:ResourceKeys.ControlCornerRadius}">6</CornerRadius>
+    <Thickness x:Key="{x:Static themes:ResourceKeys.ControlBorderThickness}">1</Thickness>
+    <Thickness x:Key="{x:Static themes:ResourceKeys.ControlPadding}">10,6</Thickness>
+    <sys:Double x:Key="{x:Static themes:ResourceKeys.ControlMinHeight}">32</sys:Double>
+
+</ResourceDictionary>

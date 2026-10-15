@@ -1,0 +1,18 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        WPF loads this dictionary automatically for the default style of every control in this assembly.
+        Keep it as an index only: each control owns its style in Controls/<Name>/<Name>.xaml.
+
+        The light tokens are merged here as the fallback, so controls render correctly even when an
+        application does not merge SanaSoftTheme. Application resources always win over these.
+        URIs must be component-qualified: relative URIs would resolve against the consuming application.
+    -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SanaSoft.Controls;component/Themes/Tokens/Typography.xaml" />
+        <ResourceDictionary Source="/SanaSoft.Controls;component/Themes/Tokens/Spacing.xaml" />
+        <ResourceDictionary Source="/SanaSoft.Controls;component/Themes/Tokens/Light.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

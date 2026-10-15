@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:themes="clr-namespace:SanaSoft.Controls.Themes">
+
+    <FontFamily x:Key="{x:Static themes:ResourceKeys.FontFamily}">Segoe UI</FontFamily>
+    <sys:Double x:Key="{x:Static themes:ResourceKeys.FontSizeCaption}">12</sys:Double>
+    <sys:Double x:Key="{x:Static themes:ResourceKeys.FontSizeBody}">14</sys:Double>
+    <sys:Double x:Key="{x:Static themes:ResourceKeys.FontSizeTitle}">20</sys:Double>
+
+</ResourceDictionary>
