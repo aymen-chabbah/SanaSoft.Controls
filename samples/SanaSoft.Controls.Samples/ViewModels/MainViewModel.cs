@@ -2,7 +2,6 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using SanaSoft.Controls.Core.Mvvm;
 using SanaSoft.Controls.Samples.Pages;
 
 namespace SanaSoft.Controls.Samples.ViewModels;

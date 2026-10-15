@@ -1,13 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Description>Shared WPF controls, styles and converters for SanaSoft applications.</Description>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SanaSoft.Controls.Core\SanaSoft.Controls.Core.csproj" />
-  </ItemGroup>
 
 </Project>

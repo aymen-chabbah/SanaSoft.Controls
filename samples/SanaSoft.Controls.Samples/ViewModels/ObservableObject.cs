@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace SanaSoft.Controls.Core.Mvvm;
+namespace SanaSoft.Controls.Samples.ViewModels;
 
 /// <summary>Base class for objects that notify listeners when a property value changes.</summary>
 public abstract class ObservableObject : INotifyPropertyChanged

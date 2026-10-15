@@ -4,7 +4,6 @@ Shared WPF components and C# code for SanaSoft applications.
 
 | Project | Target | Contents |
 |---|---|---|
-| `src/SanaSoft.Controls.Core` | `net10.0` | UI-independent code (MVVM base classes, helpers) |
 | `src/SanaSoft.Controls` | `net10.0-windows` | WPF controls, theme tokens, converters |
 | `samples/SanaSoft.Controls.Samples` | `net10.0-windows` | Gallery app that shows every control (not packed) |
 | `tests/*` | | xUnit + FluentAssertions tests for each project |
@@ -68,9 +67,9 @@ dotnet build
 dotnet test
 ```
 
-## Installing the packages
+## Installing the package
 
-The packages `SanaSoft.Controls.Core` and `SanaSoft.Controls` are published to GitHub Packages.
+The `SanaSoft.Controls` package is published to GitHub Packages.
 GitHub Packages always requires sign-in to restore, even for a public repository.
 
 1. Create a GitHub personal access token (classic) with the `read:packages` scope.
@@ -86,8 +85,6 @@ GitHub Packages always requires sign-in to restore, even for a public repository
    dotnet add package SanaSoft.Controls
    ```
 
-`SanaSoft.Controls` brings in `SanaSoft.Controls.Core` automatically.
-
 ## Releasing a new version
 
 Versions follow [Semantic Versioning](https://semver.org). Merge to `main`, then tag the commit:
@@ -97,7 +94,7 @@ git tag v1.2.0
 git push origin v1.2.0
 ```
 
-CI builds, runs the tests, and publishes both packages with version `1.2.0`.
+CI builds, runs the tests, and publishes the package with version `1.2.0`.
 
 ## Contributing
 
