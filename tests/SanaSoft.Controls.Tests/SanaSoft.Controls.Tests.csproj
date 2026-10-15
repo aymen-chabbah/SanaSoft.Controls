@@ -9,4 +9,8 @@
     <ProjectReference Include="..\..\src\SanaSoft.Controls\SanaSoft.Controls.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Xunit.StaFact" />
+  </ItemGroup>
+
 </Project>

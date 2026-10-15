@@ -1,0 +1,47 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:SanaSoft.Controls.Samples.Controls"
+                    xmlns:themes="clr-namespace:SanaSoft.Controls.Samples.Themes">
+
+    <!-- Wordmark color until FluentBranding sets it for the current light/dark theme. -->
+    <SolidColorBrush x:Key="{x:Static themes:SanaSoftBrand.WordmarkBrushKey}" Color="#2B303A" />
+
+    <Style TargetType="{x:Type controls:SanaSoftLogo}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static themes:SanaSoftBrand.WordmarkBrushKey}}" />
+        <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:SanaSoftLogo}">
+                    <!-- Laid out at a 24px mark; the Viewbox scales everything to the control's size. -->
+                    <Viewbox Stretch="Uniform">
+                        <StackPanel Orientation="Horizontal">
+                            <Path x:Name="PART_Mark"
+                                  Data="{x:Static themes:SanaSoftBrand.LogoMarkGeometry}"
+                                  Fill="{TemplateBinding MarkBrush}"
+                                  Height="24"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center" />
+                            <TextBlock x:Name="PART_Wordmark"
+                                       Text="SanaSoft"
+                                       Margin="5,0,0,1"
+                                       FontSize="27"
+                                       VerticalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       FontWeight="{TemplateBinding FontWeight}" />
+                        </StackPanel>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ShowWordmark" Value="False">
+                            <Setter TargetName="PART_Wordmark" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

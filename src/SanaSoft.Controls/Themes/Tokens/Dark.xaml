@@ -1,0 +1,21 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:themes="clr-namespace:SanaSoft.Controls.Themes">
+
+    <!-- Dark palette. Light.xaml must define exactly the same keys. -->
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.BackgroundBrush}" Color="#FF0F1115" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.SurfaceBrush}" Color="#FF1A1D23" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.SurfaceHoverBrush}" Color="#FF242830" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.SurfacePressedBrush}" Color="#FF2E333D" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.DisabledSurfaceBrush}" Color="#FF16181D" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.BorderBrush}" Color="#FF343A46" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.BorderHoverBrush}" Color="#FF4B5363" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.ForegroundBrush}" Color="#FFF2F4F7" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.SecondaryForegroundBrush}" Color="#FFA0A8B8" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.DisabledForegroundBrush}" Color="#FF5B6474" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.AccentBrush}" Color="#FF3B82F6" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.AccentHoverBrush}" Color="#FF60A5FA" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.AccentPressedBrush}" Color="#FF93C5FD" />
+    <SolidColorBrush x:Key="{x:Static themes:ResourceKeys.AccentForegroundBrush}" Color="#FF0B1220" />
+
+</ResourceDictionary>

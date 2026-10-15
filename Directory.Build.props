@@ -14,6 +14,27 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/aymen-chabbah/SanaSoft.Controls</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>wpf;controls;xaml;ui</PackageTags>
+  </PropertyGroup>
+
+  <!--
+    Library hardening. Projects that are not packed (tests, samples) must set IsPackable to false
+    before importing this file.
+  -->
+  <PropertyGroup Condition="'$(IsPackable)' != 'false'">
+    <!-- XML docs give consumers IntelliSense; with TreatWarningsAsErrors every public member must be documented. -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Source Link (built into the SDK) lets consumers step into the library source while debugging.
+         The PDB is embedded in the DLL because GitHub Packages does not host .snupkg symbol packages. -->
+    <DebugType>embedded</DebugType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- After 1.0.0 ships, set PackageValidationBaselineVersion to the last release to fail the pack on breaking changes. -->
+    <EnablePackageValidation>true</EnablePackageValidation>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(IsPackable)' != 'false'">

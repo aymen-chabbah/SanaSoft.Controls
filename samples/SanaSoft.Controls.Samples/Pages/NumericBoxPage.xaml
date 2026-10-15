@@ -1,0 +1,45 @@
+<UserControl x:Class="SanaSoft.Controls.Samples.Pages.NumericBoxPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ss="https://schemas.sanasoft.com/controls"
+             xmlns:controls="clr-namespace:SanaSoft.Controls.Samples.Controls">
+
+    <StackPanel>
+
+        <controls:ExampleCard Header="Basic"
+                              Description="Type a number, use the spin buttons, or press the Up and Down arrow keys."
+                              Code="&lt;ss:NumericBox Value=&quot;{Binding Quantity}&quot; /&gt;">
+            <ss:NumericBox AutomationProperties.AutomationId="BasicNumericBox" Width="160" HorizontalAlignment="Left" Value="42" />
+        </controls:ExampleCard>
+
+        <controls:ExampleCard Header="Range, step and format"
+                              Description="Values are clamped to Minimum and Maximum. Text that is out of range or not a number is corrected when you press Enter or leave the box."
+                              Code="&lt;ss:NumericBox Minimum=&quot;0&quot; Maximum=&quot;100&quot; Increment=&quot;0.25&quot; StringFormat=&quot;N2&quot; /&gt;">
+            <StackPanel Orientation="Horizontal">
+                <ss:NumericBox x:Name="RangeBox"
+                               AutomationProperties.AutomationId="RangeNumericBox"
+                               Width="160"
+                               Minimum="0"
+                               Maximum="100"
+                               Increment="0.25"
+                               StringFormat="N2"
+                               Value="12.5" />
+                <TextBlock AutomationProperties.AutomationId="RangeBoundValue"
+                           Margin="16,0,0,0"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource SecondaryTextStyle}"
+                           Text="{Binding Value, ElementName=RangeBox, StringFormat='Bound value: {0}'}" />
+            </StackPanel>
+        </controls:ExampleCard>
+
+        <controls:ExampleCard Header="Read-only and disabled"
+                              Code="&lt;ss:NumericBox IsReadOnly=&quot;True&quot; /&gt;&#10;&lt;ss:NumericBox IsEnabled=&quot;False&quot; /&gt;">
+            <StackPanel Orientation="Horizontal">
+                <ss:NumericBox AutomationProperties.AutomationId="ReadOnlyNumericBox" Width="160" Value="7" IsReadOnly="True" />
+                <ss:NumericBox AutomationProperties.AutomationId="DisabledNumericBox" Width="160" Margin="16,0,0,0" Value="7" IsEnabled="False" />
+            </StackPanel>
+        </controls:ExampleCard>
+
+    </StackPanel>
+
+</UserControl>
