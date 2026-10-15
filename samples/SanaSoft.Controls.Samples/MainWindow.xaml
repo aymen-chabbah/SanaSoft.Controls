@@ -1,0 +1,133 @@
+<Window x:Class="SanaSoft.Controls.Samples.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:SanaSoft.Controls.Samples.ViewModels"
+        xmlns:controls="clr-namespace:SanaSoft.Controls.Samples.Controls"
+        xmlns:themes="clr-namespace:SanaSoft.Controls.Samples.Themes"
+        Title="SanaSoft.Controls Gallery"
+        Icon="{x:Static themes:SanaSoftBrand.LogoMarkImage}"
+        Width="1100"
+        Height="720"
+        MinWidth="720"
+        MinHeight="480"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Navigation pane -->
+        <DockPanel Margin="12,12,12,16">
+
+            <!-- Logo -->
+            <StackPanel DockPanel.Dock="Top" Margin="6,6,0,22">
+                <controls:SanaSoftLogo AutomationProperties.AutomationId="Logo" Height="36" HorizontalAlignment="Left" />
+                <TextBlock Text="Controls gallery" Style="{StaticResource CaptionTextStyle}" Margin="1,4,0,0" />
+            </StackPanel>
+
+            <!-- Search -->
+            <Grid DockPanel.Dock="Top" Margin="0,0,0,12">
+                <TextBox x:Name="SearchBox"
+                         AutomationProperties.AutomationId="SearchBox"
+                         AutomationProperties.Name="Search controls"
+                         Padding="8,4,32,4"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Search controls"
+                           Margin="13,0,0,0"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Text="&#xE721;"
+                           Style="{StaticResource IconTextStyle}"
+                           FontSize="14"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,12,0"
+                           IsHitTestVisible="False"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            </Grid>
+
+            <!-- Theme selector -->
+            <Grid DockPanel.Dock="Bottom" Margin="4,12,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="120" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="&#xE790;" Style="{StaticResource IconTextStyle}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <TextBlock Grid.Column="1" Text="Theme" Margin="12,0,0,0" VerticalAlignment="Center" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <ComboBox Grid.Column="2" AutomationProperties.AutomationId="ThemeComboBox" AutomationProperties.Name="Theme" ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme}" />
+            </Grid>
+
+            <ListBox AutomationProperties.AutomationId="NavigationList"
+                     ItemsSource="{Binding PagesView}"
+                     SelectedItem="{Binding SelectedPage}"
+                     ItemContainerStyle="{StaticResource NavigationItemStyle}"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Padding="0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="vm:SamplePage">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Glyph}" Style="{StaticResource IconTextStyle}" Width="20" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                            <TextBlock Text="{Binding Title}" Margin="14,0,0,0" VerticalAlignment="Center" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+
+        <!-- Content area -->
+        <Border Grid.Column="1"
+                Background="{DynamicResource LayerFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1,1,0,0"
+                CornerRadius="8,0,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Margin="40,32,40,40" MaxWidth="960">
+
+                    <!-- Page header -->
+                    <TextBlock AutomationProperties.AutomationId="PageTitle" Text="{Binding SelectedPage.Title}" Style="{StaticResource TitleTextStyle}" />
+                    <TextBlock AutomationProperties.AutomationId="PageDescription" Text="{Binding SelectedPage.Description}" Style="{StaticResource SecondaryTextStyle}" Margin="0,6,0,0" />
+                    <Border HorizontalAlignment="Left" Margin="0,12,0,0">
+                        <Border.Style>
+                            <!-- Hidden on pages that are not about a single control. -->
+                            <Style TargetType="Border" BasedOn="{StaticResource ChipBorderStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedPage.XamlTag}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <TextBlock AutomationProperties.AutomationId="PageXamlTag"
+                                   Text="{Binding SelectedPage.XamlTag}"
+                                   FontFamily="{StaticResource CodeFont}"
+                                   FontSize="12"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                    </Border>
+
+                    <ContentControl AutomationProperties.AutomationId="PageContent" Content="{Binding SelectedPage.View}" Margin="0,28,0,0" Focusable="False" />
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+
+</Window>

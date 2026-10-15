@@ -1,0 +1,32 @@
+<UserControl x:Class="SanaSoft.Controls.Samples.Pages.ConvertersPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ss="https://schemas.sanasoft.com/controls"
+             xmlns:controls="clr-namespace:SanaSoft.Controls.Samples.Controls">
+
+    <UserControl.Resources>
+        <ss:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibility" />
+    </UserControl.Resources>
+
+    <StackPanel>
+
+        <controls:ExampleCard Header="InverseBooleanToVisibilityConverter"
+                              Description="Shows an element when the bound value is false and collapses it when true."
+                              Code="&lt;ss:InverseBooleanToVisibilityConverter x:Key=&quot;InverseBooleanToVisibility&quot; /&gt;&#10;&#10;&lt;TextBlock Visibility=&quot;{Binding IsBusy, Converter={StaticResource InverseBooleanToVisibility}}&quot; /&gt;">
+            <StackPanel>
+                <CheckBox x:Name="HideCheckBox" AutomationProperties.AutomationId="HideMessageCheckBox" Content="Hide the message" />
+                <Border AutomationProperties.AutomationId="ConverterMessage"
+                        Margin="0,12,0,0"
+                        Padding="12,8"
+                        HorizontalAlignment="Left"
+                        CornerRadius="4"
+                        Background="{DynamicResource SubtleFillColorSecondaryBrush}"
+                        Visibility="{Binding IsChecked, ElementName=HideCheckBox, Converter={StaticResource InverseBooleanToVisibility}}">
+                    <TextBlock Text="Visible while the box is unchecked." Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                </Border>
+            </StackPanel>
+        </controls:ExampleCard>
+
+    </StackPanel>
+
+</UserControl>

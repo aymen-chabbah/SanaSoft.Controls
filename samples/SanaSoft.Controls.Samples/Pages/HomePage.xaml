@@ -1,0 +1,62 @@
+<UserControl x:Class="SanaSoft.Controls.Samples.Pages.HomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:SanaSoft.Controls.Samples.Controls"
+             xmlns:vm="clr-namespace:SanaSoft.Controls.Samples.ViewModels">
+
+    <!-- DataContext is the MainViewModel, inherited from the window. -->
+    <StackPanel>
+
+        <TextBlock Text="Get started" Style="{StaticResource SubtitleTextStyle}" Margin="0,0,0,12" />
+
+        <controls:ExampleCard Header="1. Install the package"
+                              Description="Add the GitHub Packages feed once per machine (see the README), then reference the package."
+                              Code="dotnet add package SanaSoft.Controls" />
+
+        <controls:ExampleCard Header="2. Add the XAML namespace"
+                              Description="One namespace gives access to every control, converter and theme resource key. Default styles load automatically."
+                              Code="xmlns:ss=&quot;https://schemas.sanasoft.com/controls&quot;" />
+
+        <controls:ExampleCard Header="3. Apply the SanaSoft theme"
+                              Description="Merge SanaSoftTheme in App.xaml to choose light or dark. Change its Theme property at runtime and every SanaSoft control restyles itself."
+                              Code="&lt;Application.Resources&gt;&#10;  &lt;ResourceDictionary&gt;&#10;    &lt;ResourceDictionary.MergedDictionaries&gt;&#10;      &lt;ss:SanaSoftTheme Theme=&quot;Light&quot; /&gt;&#10;    &lt;/ResourceDictionary.MergedDictionaries&gt;&#10;  &lt;/ResourceDictionary&gt;&#10;&lt;/Application.Resources&gt;" />
+
+        <TextBlock Text="Controls" Style="{StaticResource SubtitleTextStyle}" Margin="0,16,0,12" />
+
+        <ItemsControl ItemsSource="{Binding ControlPages}" Focusable="False">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="vm:SamplePage">
+                    <Button AutomationProperties.AutomationId="{Binding Title, StringFormat=Tile.{0}}"
+                            AutomationProperties.Name="{Binding Title}"
+                            Width="280"
+                            MinHeight="132"
+                            Margin="0,0,16,16"
+                            Style="{StaticResource TileButtonStyle}"
+                            Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            CommandParameter="{Binding}">
+                        <StackPanel>
+                            <Border Width="40" Height="40" CornerRadius="8" HorizontalAlignment="Left" Background="{DynamicResource SubtleFillColorSecondaryBrush}">
+                                <TextBlock Text="{Binding Glyph}"
+                                           Style="{StaticResource IconTextStyle}"
+                                           FontSize="20"
+                                           Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}" />
+                            </Border>
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource BodyStrongTextStyle}" Margin="0,12,0,0" />
+                            <TextBlock Text="{Binding Description}"
+                                       Style="{StaticResource CaptionTextStyle}"
+                                       TextWrapping="Wrap"
+                                       Margin="0,2,0,0" />
+                        </StackPanel>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </StackPanel>
+
+</UserControl>

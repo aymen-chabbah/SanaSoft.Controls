@@ -1,0 +1,25 @@
+<Application x:Class="SanaSoft.Controls.Samples.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ss="https://schemas.sanasoft.com/controls"
+             StartupUri="MainWindow.xaml"
+             ThemeMode="System">
+
+    <!--
+        ThemeMode gives the gallery shell and the standard controls the Windows 11 Fluent look and follows
+        the system light/dark setting. SanaSoftTheme loads the library's design tokens.
+        FluentBranding (App.xaml.cs) swaps the Windows accent color for the SanaSoft blue and keeps
+        SanaSoftTheme and the logo on the same light/dark palette as Fluent.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ss:SanaSoftTheme />
+                <ResourceDictionary Source="Themes/Styles.xaml" />
+                <ResourceDictionary Source="Themes/ExampleCard.xaml" />
+                <ResourceDictionary Source="Themes/SanaSoftLogo.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>
